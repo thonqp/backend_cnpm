@@ -19,7 +19,7 @@ app.use(cors());
 app.use(morgan("common"));
 
 //ROUTES
-app.use("/v1/user", userRoute);
+app.use("api/v1/user", userRoute);
 
 app.listen(process.env.PORT || 8000, () => {
   console.log("Server is running...");
