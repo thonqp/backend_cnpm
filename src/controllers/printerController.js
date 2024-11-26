@@ -1,9 +1,9 @@
-const User = require('../models/user');
+const Printer = require('../models/printer');
 
-const userController = {
-    getUsers: async (req, res) => {
+const printerController = {
+    getPrinters: async (req, res) => {
         try {
-            const users = await User.find();
+            const users = await Printer.find();
             res.status(200).json(users);
         }
         catch (err) {
@@ -11,9 +11,9 @@ const userController = {
         }
     },
 
-    getUser: async (req, res) => {
+    getPrinter: async (req, res) => {
         try {
-            const user = await User.findById(req.params.id)
+            const user = await Printer.findById(req.params.id)
             res.status(200).json(user);
         }
         catch (err) {
@@ -21,9 +21,9 @@ const userController = {
         }
     },
 
-    createUser: async (req, res) => {
+    createPrinter: async (req, res) => {
         try {
-            const newUser = new User(req.body);
+            const newUser = new Printer(req.body);
             const savedUser = await newUser.save();
             res.status(200).json(savedUser);
         } catch (err) {
@@ -31,20 +31,20 @@ const userController = {
         }
     },
 
-    updateUser: async (req, res) => {
+    updatePrinter: async (req, res) => {
         try {
-            const user = await User.findById(req.params.id);
+            const user = await Printer.findById(req.params.id);
             await user.updateOne({$set: req.body});
-            const updatedUser = await User.findById(req.params.id);
+            const updatedUser = await Printer.findById(req.params.id);
             res.status(200).json(updatedUser);
         } catch (err) {
             res.status(500).json(err);
         }
     },
 
-    deleteUser: async (req, res) => {
+    deletePrinter: async (req, res) => {
         try {
-            await User.findByIdAndDelete(req.params.id);
+            await Printer.findByIdAndDelete(req.params.id);
             res.status(200).json("Deleted user successfully");
         } catch (err) {
             res.status(500).json(err);
@@ -52,4 +52,4 @@ const userController = {
     },
 };
 
-module.exports = userController;
+module.exports = printerController;

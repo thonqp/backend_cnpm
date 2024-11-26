@@ -7,7 +7,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const dotenv = require("dotenv");
 
-const userRoute = require("./routes/userRoute");
+const userRouter = require("./routes/userRoute");
 
 dotenv.config();
 //CONNECT DATABASE
@@ -19,8 +19,8 @@ app.use(cors());
 app.use(morgan("common"));
 
 //ROUTES
-app.use("api/v1/user", userRoute);
+app.use("/api/v1/users", userRouter);
 
-app.listen(process.env.PORT || 8000, () => {
-  console.log("Server is running...");
+app.listen(process.env.PORT || 6000, () => {
+  console.log("server is running");
 });
