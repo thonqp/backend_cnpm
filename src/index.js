@@ -1,13 +1,13 @@
-const express = require("express");
-const cors = require("cors");
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
+import morgan from "morgan";
+import helmet from "helmet";
+import dotenv from "dotenv";
+import userRoute from "./routes/userRoute";
+
 const app = express();
-const mongoose = require("mongoose");
-var bodyParser = require("body-parser");
-const morgan = require("morgan");
-const helmet = require("helmet");
-const dotenv = require("dotenv");
-const authorRoute = require("./routes/author");
-const bookRoute = require("./routes/book");
 
 dotenv.config();
 //CONNECT DATABASE
@@ -21,8 +21,7 @@ app.use(cors());
 app.use(morgan("common"));
 
 //ROUTES
-app.use("/v1/author", authorRoute);
-app.use("/v1/book", bookRoute);
+app.use("/v1/user", userRoute);
 
 app.listen(process.env.PORT || 8000, () => {
   console.log("Server is running...");
