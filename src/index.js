@@ -8,6 +8,7 @@ const helmet = require("helmet");
 const dotenv = require("dotenv");
 
 const userRouter = require("./routes/userRoute");
+const authRouter = require("./routes/authRoute");
 
 dotenv.config();
 //CONNECT DATABASE
@@ -20,6 +21,7 @@ app.use(morgan("common"));
 
 //ROUTES
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/auth", authRouter); // Sử dụng authRouter
 
 app.listen(process.env.PORT || 6000, () => {
   console.log("server is running");
