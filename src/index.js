@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const dotenv = require("dotenv");
 
+const seedRoles = require('./seed/seedRoles');
 const userRouter = require("./routes/userRoute");
 const authRouter = require("./routes/authRoute");
 
@@ -25,6 +26,8 @@ app.use("/api/v1/auth", authRouter); // Sử dụng authRouter
 
 console.log("MONGODB_URL:", process.env.MONGODB_URL);
 
+// GENERATE SEED DATA
+// seedRoles();
 
 app.listen(process.env.PORT || 6000, () => {
   console.log("server is running");
