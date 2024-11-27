@@ -16,10 +16,8 @@ const authController = {
 
             // Tạo user mới
             const newUser = new User({
-                username,
-                password, // Password sẽ được mã hóa trong middleware của userSchema
-                fullName,
-                role,
+                username, password, // Password sẽ được mã hóa trong middleware của userSchema
+                fullName, role,
             });
             const savedUser = await newUser.save();
 
@@ -41,22 +39,21 @@ const authController = {
             }
 
             // Kiểm tra mật khẩu
-            const isPasswordValid = await user.checkPassword(password);
+            // const isPasswordValid = await user.checkPassword(password); // ??? Object user làm gì có phương thức checkPassword???????
+            const isPasswordValid = user.password === password;
             if (!isPasswordValid) {
                 return res.status(401).json({ message: "Invalid credentials" });
             }
 
             // Tạo JWT token
-            const token = jwt.sign(
-                { id: user._id, role: user.role },
-                process.env.JWT_SECRET,
-                { expiresIn: "1h" }
-            );
+            // const token = jwt.sign(
+            //     { id: user._id, role: user.role },
+            //     process.env.JWT_SECRET,
+            //     { expiresIn: "1h" }
+            // );
 
             res.status(200).json({
-                message: "Login successful",
-                token,
-                user: { username: user.username, role: user.role },
+                username: user.username, fullName: user.fullName, role: user.role
             });
         } catch (err) {
             res.status(500).json(err);
