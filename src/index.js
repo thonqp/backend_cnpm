@@ -23,6 +23,9 @@ app.use(morgan("common"));
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter); // Sử dụng authRouter
 
+console.log("MONGODB_URL:", process.env.MONGODB_URL);
+
+
 app.listen(process.env.PORT || 6000, () => {
   console.log("server is running");
 });

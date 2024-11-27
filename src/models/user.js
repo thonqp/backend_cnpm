@@ -17,9 +17,10 @@ const userSchema = new Schema({
         required: true
     },
     role: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'Role', // Tham chiếu đến model Role
         required: true
     }
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
